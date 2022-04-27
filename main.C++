@@ -11,7 +11,7 @@
 
 using namespace std;
 
-//universal//
+//universl//
 void lodging();
 void response();
 void checkingSystem();
