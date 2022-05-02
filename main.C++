@@ -12,60 +12,59 @@
 using namespace std;
 
 //universal//
-void lodging();
+void Welcome();
+void Names();
 void response();
-void checkingSystem();
-//structure // instructions//
+void CheckingSystem();
 
+string Hotels[6] = {
+    Hotels[1] = "Hotel 1", Hotels[2] = "Hotel 2", Hotels[3] = "Hotel 3", Hotels[4] = "Hotel 4"
+};
+string Date[5] = {
+    Date[1] = "April 2", Date[2] = "April 2", Date[3] = "April 2", Date[4] = "April 2",
+};
+
+string Capacity [5] = {
+    Capacity[1] = "copacity: 5", Capacity[2] = "copacity: 5", Capacity[3]= "copacity: 5",Capacity[4] = "copacity: 5"
+};
+
+int main(){
+    Welcome();
+}
+//structure // instructions//
 struct Items{
     public:
     //lodges
 string Hotel; 
 string Availability;
 string ammount;
-//Lists//
-string Hotels[9]{
-    Hotels[1] = "Hotel 1", Hotels[2] = "Hotel 2", Hotels[3] = "Hotel 3", Hotels[4] = "Hotel 4"
-};
-
-string Date[9]{
-    Date[1] = "April 2", Date[2] = "April 2", Date[3] = "April 2", Date[4] = "April 2",
-};
-
-string Capacity [9] {
-    Capacity[1] = "copacity: 5", Capacity[2] = "copacity: 5", Capacity[3]= "copacity: 5",Capacity[4] = "copacity: 5"
-};
 
 };
 
-
-
-
+//intro 
 void Welcome(){
    system("Color 0B");
     cout<< " ----------------------------------"<<endl;
     cout<< "|    Welcome to Student Lodging    |"<<endl;
     cout<< " ----------------------------------"<<endl;
     cout<< "BY Aman & Vaanya"<<endl<<endl;
-    lodging();
+    Names();
 }
+
 //prints lists of lodging
-void lodging(){
-Items array;
+void Names(){
 string next;
 cout << "Please choose a lodging below: " << endl;
-for(int i = 1; i<=4; ++i){
-    cout<<array.Hotels[i] << endl;
+for(int i = 0; i<=3; ++i){
+    cout<<Hotels[i]<<" | ";
 }
 cout<<endl<<"type next for booking page -->"<<endl;
 cin>> next;
 if(next == "next"){
   response();  
+ }
 }
 
-}
-
- 
 //response to lodging//
 void response(){
 Items Lodges;
@@ -111,6 +110,3 @@ Items Lodges;
 
 
 
-int main(void){
-    Welcome();
-}
