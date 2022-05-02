@@ -11,17 +11,17 @@
 
 using namespace std;
 
-//universl//
+//universal//
 void lodging();
 void response();
 void checkingSystem();
 string Hotel; 
 string Availability;
 string ammount;
+fstream one;
 
-void Welcome()
-{
-    system("Color 0B");
+void Welcome(){
+   // system("Color 0B");
     cout<< " ----------------------------------"<<endl;
     cout<< "|    Welcome to Student Lodging    |"<<endl;
     cout<< " ----------------------------------"<<endl;
@@ -29,6 +29,9 @@ void Welcome()
     lodging();
 }
 //prints lists of lodging
+
+
+ 
 void lodging(){
 cout << "Please choose a lodging below: " << endl;
 //opening fstream//
