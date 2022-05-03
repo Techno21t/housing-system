@@ -16,7 +16,7 @@ void Welcome();
 void Names();
 void response();
 void CheckingSystem();
-
+//lists//
 string Hotels[6] = {
     Hotels[1] = "Hotel 1", Hotels[2] = "Hotel 2", Hotels[3] = "Hotel 3", Hotels[4] = "Hotel 4"
 };
@@ -27,7 +27,7 @@ string Date[5] = {
 string Capacity [5] = {
     Capacity[1] = "copacity: 5", Capacity[2] = "copacity: 5", Capacity[3]= "copacity: 5",Capacity[4] = "copacity: 5"
 };
-
+//initiator
 int main(){
     Welcome();
 }
@@ -56,8 +56,14 @@ void Names(){
 string next;
 cout << "Please choose a lodging below: " << endl;
 for(int i = 0; i<=3; ++i){
-    cout<<Hotels[i]<<" | ";
-}
+    cout<<Hotels[i]<<"     | ";
+} cout<<endl;
+for(int i = 0; i<=3; ++i){
+    cout<<Date[i]<<"     | ";
+}cout<<endl;
+for(int i = 0; i<=3; ++i){
+    cout<<Capacity[i]<<" | ";
+}cout<<endl;
 cout<<endl<<"type next for booking page -->"<<endl;
 cin>> next;
 if(next == "next"){
@@ -78,14 +84,17 @@ Items Lodges;
     cin >> Lodges.Availability;
     cout<< "ammount of people/copacity: ";
     cin>> Lodges.ammount;
-
+    CheckingSystem();
 }
 
-/*void CheckingSystem(){
-
-
-}*/
-
+void CheckingSystem(){
+    Items Lodging;
+    if(Lodging.Hotel == Hotels[1]||Lodging.Hotel == Hotels[2]||Lodging.Hotel == Hotels[3]||Lodging.Hotel == Hotels[4]){
+        cout<<"found";
+    }else if(Lodging.Hotel != Hotels[1]||Lodging.Hotel != Hotels[2]||Lodging.Hotel !=Hotels[3]||Lodging.Hotel !=Hotels[4]){
+        cout<<"Not found";
+    }
+}
 /*void checkingSystem(){
     string line;
     int offset;
