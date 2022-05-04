@@ -17,6 +17,8 @@ void Names();
 void response();
 void CheckingSystem();
 //lists//
+
+
 string Hotels[6] = {
     Hotels[1] = "Hotel 1", Hotels[2] = "Hotel 2", Hotels[3] = "Hotel 3", Hotels[4] = "Hotel 4"
 };
@@ -79,21 +81,36 @@ Items Lodges;
     cout<< " ----------------------------------"<<endl<<endl;
     cout<< "which Lodging would you like to check for availability"<<endl;
     cout<< "Lodging Name: ";
-    cin>>Lodges.Hotel;
+    getline(cin, Lodges.Hotel);
     cout<< "week availability: ";
-    cin >> Lodges.Availability;
+    getline(cin, Lodges.Availability);
     cout<< "ammount of people/copacity: ";
-    cin>> Lodges.ammount;
+    getline(cin, Lodges.ammount);
     CheckingSystem();
 }
 
+bool exists(string const & Hotel, 
+            vector<string> const & Hotels)
+{
+    for (int i = 0; i < Hotels.size(); i++)
+        if (Hotel == Hotels[i])        
+            return true;
+    return false;
+}
+
+
 void CheckingSystem(){
     Items Lodging;
-    if(Lodging.Hotel == Hotels[1]||Lodging.Hotel == Hotels[2]||Lodging.Hotel == Hotels[3]||Lodging.Hotel == Hotels[4]){
-        cout<<"found";
-    }else if(Lodging.Hotel != Hotels[1]||Lodging.Hotel != Hotels[2]||Lodging.Hotel !=Hotels[3]||Lodging.Hotel !=Hotels[4]){
-        cout<<"Not found";
-    }
+    vector <string> Hotels(6);
+    Hotels[1] = "Hotel 1";
+    Hotels[2] = "Hotel 2"; 
+    Hotels[3] = "Hotel 3";
+    Hotels[4] = "Hotel 4";
+    if (exists(Lodging.Hotel, Hotels))
+        std::cout << "found\n";
+    else
+        std::cout << "not found\n";
+    
 }
 /*void checkingSystem(){
     string line;
