@@ -33,7 +33,6 @@ void Welcome();
 void booking();
 void response();
 void CheckingSystem();
-<<<<<<< HEAD
 void hotelTxtList();
 void checkingIn();
 void search();
@@ -49,10 +48,6 @@ void availabilityChecker();
   
   
 }*/
-=======
-//lists//
-
->>>>>>> c541efa157eacc2e90da36797486540928c50cc5
 
 //STRUCTURES HOLDING VARIABLES
 struct hotelSelection{
@@ -63,7 +58,6 @@ struct hotelSelection{
   string searchAnswer;
 };
 
-<<<<<<< HEAD
 
 //function for holding hotel names
 void hotelTxtList(){
@@ -81,14 +75,6 @@ void hotelTxtList(){
     file.close();
   }
   
-=======
-string Capacity [5] = {
-    Capacity[1] = "copacity: 5", Capacity[2] = "copacity: 5", Capacity[3]= "copacity: 5",Capacity[4] = "copacity: 5"
-};
-//initiator
-int main(){
-    Welcome();
->>>>>>> c541efa157eacc2e90da36797486540928c50cc5
 }
 
 //function for holding checked in customer list
@@ -111,7 +97,6 @@ void Welcome(){
     booking();
 }
 
-<<<<<<< HEAD
 //getting check-in and check-out date
 void getTime(){
    time_t t = time(0);   // get time now
@@ -193,26 +178,6 @@ void List(){
 checkingIn();
   
   
-=======
-//prints lists of lodging
-void Names(){
-string next;
-cout << "Please choose a lodging below: " << endl;
-for(int i = 0; i<=3; ++i){
-    cout<<Hotels[i]<<"     | ";
-} cout<<endl;
-for(int i = 0; i<=3; ++i){
-    cout<<Date[i]<<"     | ";
-}cout<<endl;
-for(int i = 0; i<=3; ++i){
-    cout<<Capacity[i]<<" | ";
-}cout<<endl;
-cout<<endl<<"type next for booking page -->"<<endl;
-cin>> next;
-if(next == "next"){
-  response();  
- }
->>>>>>> c541efa157eacc2e90da36797486540928c50cc5
 }
 
 //response to lodging//
@@ -323,7 +288,6 @@ string search;
     cout<< " ----------------------------------"<<endl;
     cout<< "|    Welcome to Booking system     |"<<endl;
     cout<< " ----------------------------------"<<endl<<endl;
-<<<<<<< HEAD
     
     cout<< "Lodging Name: "<<searchedHotel<<endl;
     cout<< "Ammount of people checking in: ";
@@ -370,20 +334,9 @@ string search;
     system("clear");
     booking();
       
-=======
-    cout<< "which Lodging would you like to check for availability"<<endl;
-    cout<< "Lodging Name: ";
-    getline(cin, Lodges.Hotel);
-    cout<< "week availability: ";
-    getline(cin, Lodges.Availability);
-    cout<< "ammount of people/copacity: ";
-    getline(cin, Lodges.ammount);
-    CheckingSystem();
->>>>>>> c541efa157eacc2e90da36797486540928c50cc5
 }
   
 
-<<<<<<< HEAD
   
 
 }*/
@@ -552,32 +505,6 @@ void availabilityChecker(){
      cout<< "HOTEL FOUND!";
    }
 void checkingSystem(){
-=======
-bool exists(string const & Hotel, 
-            vector<string> const & Hotels)
-{
-    for (int i = 0; i < Hotels.size(); i++)
-        if (Hotel == Hotels[i])        
-            return true;
-    return false;
-}
-
-
-void CheckingSystem(){
-    Items Lodging;
-    vector <string> Hotels(6);
-    Hotels[1] = "Hotel 1";
-    Hotels[2] = "Hotel 2"; 
-    Hotels[3] = "Hotel 3";
-    Hotels[4] = "Hotel 4";
-    if (exists(Lodging.Hotel, Hotels))
-        std::cout << "found\n";
-    else
-        std::cout << "not found\n";
-    
-}
-/*void checkingSystem(){
->>>>>>> c541efa157eacc2e90da36797486540928c50cc5
     string line;
     int offset;
     fstream lodging;
