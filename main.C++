@@ -22,7 +22,7 @@ bool z = false;
 string searchedHotel;
 list <string> names;
 list <string> address;
-list <int> phoneNumber;
+list <string> phoneNumber;
 list<string>availableRooms;
 int numOfRooms;
 string customerNumber;
@@ -389,8 +389,8 @@ hotelSelection Lodges;
     availability(); 
   
 
-  for(int a =0; a<numOfRooms; a++){
-    cout<< endl<< "Room "<<a+1<< ": ";
+  for(int a =1; a<=numOfRooms; a++){
+    cout<< endl<< "Room "<<a<< ": ";
     cin>>reciept.Room;
     
     
