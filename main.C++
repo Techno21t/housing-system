@@ -24,7 +24,6 @@ list <string> names;
 list <string> address;
 list <string> phoneNumber;
 list<string>availableRooms;
-int numOfRooms;
 string customerNumber;
 
 
@@ -51,9 +50,9 @@ void availabilityChecker();
 
 //STRUCTURES HOLDING VARIABLES
 struct hotelSelection{
+  public:
   string hotelSelected;
   string Availability;
-  string ammount;
   string answer;
   string searchAnswer;
 };
@@ -103,7 +102,7 @@ void getTime(){
     tm* now = localtime(&t);
     cout << (now->tm_year + 1900) << '-' 
          << (now->tm_mon + 1) << '-'
-         <<  now->tm_mday
+         <<  now->tm_mday-1
          <<"\n";
   
 }
@@ -112,22 +111,22 @@ void addingTime(){
   int returnMon;
    time_t t = time(0);   // get time now
   tm* now = localtime(&t);
-  int currDate =now->tm_mday;
+  int currDate =now->tm_mday-1;
  int currMonth = now->tm_mon +1;
   if(currDate > 21 && currMonth ==2 ){
      returnDate =  1;
      returnMon =  3;
     cout<< (now->tm_year + 1900) << '-' 
-         << returnDate << '-'
-         <<  returnMon 
+         << returnMon << '-'
+         <<  returnDate 
          <<"\n";
   }
   else if(currDate >23 && currMonth <12){
     returnDate = 1;
     returnMon = now->tm_mon + 1;
     cout<< (now->tm_year + 1900) << '-' 
-         << returnDate << '-'
-         <<  returnMon
+         << returnMon << '-'
+         <<  returnDate
          <<"\n";
     
   }
@@ -135,14 +134,14 @@ void addingTime(){
     returnDate = 3;
     returnMon = 1;
     cout<< (now->tm_year + 1900) +1<< '-' 
-         << returnDate << '-'
-         <<  returnMon
+         << returnMon << '-'
+         <<  returnDate
          <<"\n";
   }
   else{
     cout<< (now->tm_year + 1900)<< '-' 
-         << currDate +7 << '-'
-         <<  currMonth 
+        <<  currMonth <<'-'
+         << currDate +7
          <<"\n";
   }
   
@@ -179,6 +178,12 @@ checkingIn();
   
   
 }
+void loop(){
+  if(z==true){
+    system("clear");
+    Welcome();
+  }
+}
 
 //response to lodging//
 void checkingIn(){
@@ -209,10 +214,13 @@ void checkingIn(){
   else {
     cout << "HOTEL NOT FOUND";
     cout << endl << "Please try again!";
+    z=true;
+    loop();
   }
 
   
 }
+
 void search(){
   hotelSelection hotelSelecting;
 string search;
@@ -270,7 +278,8 @@ string search;
     cout << "HOTEL NOT FOUND\nPlease try again!";
     sleep(2);
       system("clear");
-      Welcome();
+    z=true;
+      loop();
     }
   
 }
@@ -344,12 +353,16 @@ string search;
 struct recieptItems{
     public:
     string name;
-    string card;
     string address;
     string HotelN;
     string Room;
-    int rooms;
+    int ammount;
 
+};
+
+class cost{
+public:
+  int costOfStay=1500;
 };
 //Admin Booking system///
 void response(){
@@ -359,98 +372,77 @@ void response(){
     Reciept();
 }
 //gathers information for reciept and booking//
-void Reciept(){
-recieptItems reciept;  
-hotelSelection Lodges;
-
+void Reciept(){ 
+  cost pay;
+recieptItems reciept; 
+  string room;
+  fstream booked;
+  string c;
     cout<< "Hotels name: "<<searchedHotel<<endl;
   
     cout<< "Name of recipient: ";
-    cin.ignore();
+  cin.ignore();
     getline(cin, reciept.name);
   
     cout<< "Address: ";
-    cin.ignore();
-    getline(cin, reciept.HotelN);
+    getline(cin,reciept.address);
   
     cout<<"Please enter your number: ";
-    cin.ignore();
-    getline(cin, customerNumber);
+    cin>>customerNumber;
   
-    cout<< "Ammount of people checking in: ";
-    cin.ignore();
-    getline(cin, Lodges.ammount);
-  
-    cout<<"Numbers of room required: ";
-    cin>> numOfRooms;
-  
+    cout<< "Number of people checking in: ";
+    cin>>reciept.ammount;  
   
     cout<<"Rooms Numbers availiable: "<<endl;
     availability(); 
+    cin>> reciept.Room;
+
   
+    sleep(2);
 
-  for(int a =1; a<=numOfRooms; a++){
-    cout<< endl<< "Room "<<a<< ": ";
-    cin>>reciept.Room;
-    
-    
-    }
-    availabilityChecker();
-    recieptMaker();
-}
-//makes reciept and checks booking///
-void recieptMaker(){
-  fstream booked;
-  recieptItems reciept;  
-hotelSelection Lodges; 
-  ofstream HELLSReciept("Reciept.txt");
-  HELLSReciept.close();
-  fstream FinalReciept("Reciept.txt");
-
+  
     cout<<"Check-in date: ";
     getTime();
     cout<< "Check-out date: ";
     addingTime();
+  cout<<"Cost for 1 day = $1500 \n";
+  cout<<"Cost of stay for "<<reciept.ammount<<" people for 7 days = $"<<pay.costOfStay * reciept.ammount * 7;
+  cout<<"Hope you have a great stay";
+    
     booked.open("booked.txt",ios::app);
-      while(booked.is_open()){
+      if(booked.is_open()){
         booked<< "Hotel: "<<searchedHotel<<endl;
         booked<< "Name of the costumer: "<< reciept.name<< endl;
-        booked<< "Number of people checked in: "<< Lodges.ammount<<endl;
-        booked<<"Number of rooms checked into: "<<numOfRooms<<endl; 
-        booked<< "Address: "<<reciept.HotelN<<endl;
-        booked<< "Phone Number: "<<customerNumber<<"\n\n";
+        booked<< "Address: "<<reciept.address<<endl;
+        booked<< "Phone Number: "<<customerNumber<<endl;
+        booked<< "Number of people checked in: "<< reciept.ammount<<endl;
+         booked<<"Room "<<": "<<reciept.Room<<endl;
+           booked<<"Cost of stay= $"<<pay.costOfStay * reciept.ammount * 7<<endl;
         
+        booked.close();
       }
-      booked.close();
-  
-  
+    
+    
+    
+    
 }
-//greats and showes availabiltiy//
+//creats and shows availabiltiy//
 void availability(){
    recieptItems reciept; 
-    ofstream availability("room-availability.txt");
-    availability.close();
-    fstream File("room-availability.txt");
-        for(int i = 1; i <=17; ++i){
-          sleep(1);
-          reciept.rooms = (rand()% 10-1);  
-          File<<reciept.rooms<<endl;
-        }
-  File.close();
-  ifstream couts ("room-availability.txt");
+  ifstream couts ("availability.txt");
       string paste;
     while (getline(couts, paste)){
     cout<<paste<<endl;
-  }
-        couts.close();
-  
+    
+  } 
+  couts.close();
 }
 
 void availabilityChecker(){
   recieptItems reciept; 
  //openeing the hotels file and adding it to a list
   fstream file;
-  file.open("room-availability.txt", ios::in);
+  file.open("availability.txt", ios::in);
   if (file.is_open()) {
     string RoomsAvailable;
     while (getline(file, RoomsAvailable)) {
@@ -464,15 +456,14 @@ void availabilityChecker(){
 
    for (string i : availableRooms) {
     //checks if search matches on of the elements in the list
-    if (i.compare(reciept.Room) == 0) {
+    if (i.compare(reciept.Room )== 0) {
       x = true;
       }
      }
      if (x == true) {
-    ifstream Removing("room-availabiltiy.txt");
+    ifstream Removing("availabiltiy.txt");
        
     ofstream write("tempt.txt"); 
-    write.close(); 
     if (Removing.is_open()) {
        string line;
        while (getline(Removing, line)) {
@@ -484,47 +475,19 @@ void availabilityChecker(){
     write.close();
       }
     
+  }if (x == false) {
+    cout<<"please choose a different room.";
+    
   }
-
-
 }
 
 
- /*void CheckingSystem(){
-   hotelTxtList();
-   hotelSelection selection ;
-  for (string i:hotels){
-
-    if(i.compare(selection.hotelSelected)==0){
-      x = true;
-    }
-
-  
-  }
-   if(x==true){
-     cout<< "HOTEL FOUND!";
-   }
-void checkingSystem(){
-    string line;
-    int offset;
-    fstream lodging;
-    lodging.open("lodging.txt");
-    if(lodging.is_open()){
-        while (!lodging.eof()){
-            getline(lodging, line);
-            if((offset = line.find(Hotel)) != string::npos){
-                cout << "found Hotel";
-                if((offset = line.find(Availability)) != string::npos){
-                cout << "found hotel availability";
-                if((offset = line.find(ammount)) != string::npos){
-                cout << "found hotel copacity";
-            }
-            
-        }
-    }
+void recieptMaker(){
+  recieptItems reciept;
+  ofstream Final("reciept.txt");
 }
-}
-}*/
+
+
 
 int main(){
     Welcome();
